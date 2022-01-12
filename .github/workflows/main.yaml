@@ -39,5 +39,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: my_file.json
+        path: outpu.json
   
