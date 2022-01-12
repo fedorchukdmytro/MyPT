@@ -12,14 +12,14 @@ on:
 
 jobs:
   job1:
-    runs-on: gliderlabs/alpine:3.4
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Set up iperf3
       run: |
-        apk update
-        apk add iperf3
-        apk add iproute2 
+        sudo apt-get update
+        sudo apt-get install -y iperf3
+        sudo apt-get install -y iproute2 
     - name: Define IP server
       run: |
         echo SERV_IP=$(ip -4 route show default | cut -d' ' -f3) >> $GITHUB_ENV
