@@ -11,24 +11,18 @@ on:
 
 
 jobs:
-  job1:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up iperf3
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y iperf3
-        sudo apt-get install -y iproute2 
-    - name: Define IP server
-      run: |
-        echo SERV_IP=$(ip -4 route show default | cut -d' ' -f3) >> $GITHUB_ENV
-
   build:
-    needs: job1
     runs-on: ubuntu-latest
-
     steps:
+    - name: Find Docker Host IP
+      uses: addnab/docker-run-action@v1
+      with:
+        image: alpine:latest
+        run: |
+          apk update 
+          apk add iproute2
+          echo SERV_IP=$(ip -4 route show default | cut -d' ' -f3) >> $GITHUB_ENV
+        
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
