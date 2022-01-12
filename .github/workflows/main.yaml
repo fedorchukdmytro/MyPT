@@ -11,24 +11,20 @@ on:
 
 
 jobs:
-  job1:
-    runs-on: alpine-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up iperf3
-      run: |
-        apk update
-        apk add iperf3
-        apk add iproute2 
-    - name: Define IP server
-      run: |
-        echo SERV_IP=$(ip -4 route show default | cut -d' ' -f3) >> $GITHUB_ENV
-
   build:
-    needs: job1
     runs-on: ubuntu-latest
-
     steps:
+    - name: Find Docker Host IP
+      uses: addnab/docker-run-action@v1
+      with:
+        image: alpine:latest
+        run: |
+          apk update 
+          apk add iproute2
+          echo "SERV_IP=$(ip -4 route show default | cut -d' ' -f3)" > dev.env
+      env:
+          SERV_IP: $(cat dev.ent)
+        
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
