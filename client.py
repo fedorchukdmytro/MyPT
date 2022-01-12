@@ -13,7 +13,7 @@ class tc_one(aetest.Testcase):
 
     @aetest.test
     def client_launching(self):
-        with open('/home/runner/work/MyPT/MyPT/output.json', 'w') as f:
+        with open('output.json', 'w') as f:
             client_process = subprocess.Popen(['iperf3', '-c', '127.0.0.1', '-J'], stdout=f,)
         client_process.wait()
 
