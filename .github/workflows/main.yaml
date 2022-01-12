@@ -22,15 +22,10 @@ jobs:
       with:
         python-version: 3.9
     
-    
-    
-    
-    
     - name: Set up iperf3
       run: |
         sudo apt-get update
         sudo apt-get install iperf3
-
 
     - name: Set up pyATS    
       run: |
@@ -39,4 +34,10 @@ jobs:
     - name: PyTS run
       run: |
         pyats run job py_job.py
+    
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: my_file.json
   
