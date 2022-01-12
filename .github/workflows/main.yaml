@@ -1,0 +1,34 @@
+name: Flow_Tests
+
+on:
+  push:
+    branches:
+      - main
+  
+  pull_request:
+    branches:
+      - main
+
+
+jobs:
+  build:
+
+    runs-on: ciscotestautomation/pyats:latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    
+    - name: Set up iperf3
+      run: |
+        sudo apt-get update
+        sudo apt-get install iperf3
+    
+    - name: PyTS run
+      run: |
+        source bin/activate
+        pyats run job py_job.py
+  
