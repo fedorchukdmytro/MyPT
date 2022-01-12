@@ -38,6 +38,5 @@ jobs:
     
     - name: PyTS run
       run: |
-        source bin/activate
         pyats run job py_job.py
   
