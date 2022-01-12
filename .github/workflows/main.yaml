@@ -23,7 +23,7 @@ jobs:
           apk add iproute2
           echo "SERV_IP=$(ip -4 route show default | cut -d' ' -f3)" > dev.env
       env:
-          APP_NAME: $(cat dev.ent)
+          SERV_IP: $(cat dev.ent)
         
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
