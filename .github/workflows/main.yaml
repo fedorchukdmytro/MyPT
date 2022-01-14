@@ -12,9 +12,14 @@ on:
 
 jobs:
   job1:
-    runs-on: alpine:latest
+    runs-on: i386/ubuntu:16.4
     steps:
     - uses: actions/checkout@v2
+    - name: Common set up
+      run: |
+        apt-get update
+        apt-get install -y openssh-server
+        echo 'root:THEPASSWORDYOUCREATES' | chpasswd
     - name: Set up iperf3
       run: |
         apk update
