@@ -56,7 +56,7 @@ jobs:
     
     - name: PyTS run
       run: |
-        pyats run job py_job.py
+        pyats run job /root/py_job.py
 
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v2
