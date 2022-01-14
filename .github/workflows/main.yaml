@@ -29,7 +29,7 @@ on:
   #     run: |
   #       echo SERV_IP=$(ip -4 route show default | cut -d' ' -f3) >> $GITHUB_ENV
 
-  build:
+build:
     needs: job1
     runs-on: ubuntu-latest
 
