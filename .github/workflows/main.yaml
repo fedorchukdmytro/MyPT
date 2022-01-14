@@ -19,7 +19,7 @@ jobs:
       run: |
         apt-get update
         apt-get install -y openssh-server
-        echo 'root:THEPASSWORDYOUCREATES' | chpasswd
+        
     - name: Set up iperf3
       run: |
         apk update
