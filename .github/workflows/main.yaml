@@ -12,7 +12,7 @@ on:
 
 jobs:
   job1:
-    runs-on: i386/ubuntu:16.4
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Common set up
